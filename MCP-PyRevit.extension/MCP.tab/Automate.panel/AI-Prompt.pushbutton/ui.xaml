@@ -1,0 +1,44 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MCP AI Prompt" Height="450" Width="600"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF0F0F0">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <TabControl Grid.Row="0">
+            <TabItem Header="Prompt">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="prompt_textbox" Grid.Row="0" Margin="5"
+                             TextWrapping="Wrap" AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"
+                             Text="Describe the automation you want to perform..." />
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                        <Button x:Name="browse_button" Content="Add Reference Files..." Width="150" Height="25"/>
+                        <TextBlock x:Name="files_label" Margin="10,0,0,0" VerticalAlignment="Center" Text="No files selected."/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Credentials">
+                <StackPanel Margin="10">
+                    <Label Content="OpenRouter API Key:" />
+                    <TextBox x:Name="api_key_box" Margin="5"/>
+                    <Label Content="MCP Username:" Margin="0,10,0,0"/>
+                    <TextBox x:Name="mcp_user_box" Margin="5"/>
+                    <Label Content="MCP Password:" Margin="0,10,0,0"/>
+                    <PasswordBox x:Name="mcp_pass_box" Margin="5"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        
+        <Button x:Name="run_button" Grid.Row="1" Content="Run Automation" 
+                Width="120" Height="30" Margin="0,10,0,0" HorizontalAlignment="Right"/>
+    </Grid>
+</Window> 
