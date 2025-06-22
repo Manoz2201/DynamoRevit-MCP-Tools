@@ -4,7 +4,7 @@ import os
 import sys
 import json
 import subprocess
-from pyrevit.coreutils import config
+from pyrevit import script
 
 # NOTE: You must install the 'requests' library into your extension's 'lib' folder
 # using the command: pyrevit extend lib --name requests --dest "MCP-PyRevit.extension"
@@ -59,7 +59,7 @@ class MCP_UI(Window):
     def load_settings(self):
         """Loads API key from the config file and populates the UI."""
         print("Loading saved settings...")
-        saved_api_key = config.get_config(CONFIG_SECTION).get_option('api_key', '')
+        saved_api_key = script.get_config(CONFIG_SECTION).get_option('api_key', '')
         if saved_api_key:
             self.api_key_box.Text = saved_api_key
             print("API Key loaded from config.")
@@ -67,9 +67,9 @@ class MCP_UI(Window):
     def save_settings(self):
         """Saves the current API key to the config file."""
         print("Saving settings...")
-        cfg = config.get_config(CONFIG_SECTION)
+        cfg = script.get_config(CONFIG_SECTION)
         cfg.api_key = self.api_key_box.Text
-        config.save_configs()
+        script.save_config()
         print("API Key saved.")
 
     def browse_for_files(self, sender, args):
