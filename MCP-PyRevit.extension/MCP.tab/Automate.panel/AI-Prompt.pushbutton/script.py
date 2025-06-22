@@ -4,6 +4,7 @@ import os
 import sys
 import json
 import subprocess
+from pyrevit.coreutils import config
 
 # NOTE: You must install the 'requests' library into your extension's 'lib' folder
 # using the command: pyrevit extend lib --name requests --dest "MCP-PyRevit.extension"
@@ -15,6 +16,7 @@ except ImportError:
 
 # Add the script's directory to the system path to find the XAML file
 script_dir = os.path.dirname(__file__)
+CONFIG_SECTION = 'MCP_AI_PROMPT_TOOL' # Unique name for our settings
 if script_dir not in sys.path:
     sys.path.append(script_dir)
 
@@ -44,12 +46,31 @@ class MCP_UI(Window):
         self.mcp_pass_box = self.ui.FindName("mcp_pass_box")
         self.run_button = self.ui.FindName("run_button")
 
+        # Load saved settings
+        self.load_settings()
+
         # Connect UI elements to methods
         self.browse_button.Click += self.browse_for_files
         self.run_button.Click += self.run_automation
         
         # Store selected files
         self.selected_files = []
+
+    def load_settings(self):
+        """Loads API key from the config file and populates the UI."""
+        print("Loading saved settings...")
+        saved_api_key = config.get_config(CONFIG_SECTION).get_option('api_key', '')
+        if saved_api_key:
+            self.api_key_box.Text = saved_api_key
+            print("API Key loaded from config.")
+
+    def save_settings(self):
+        """Saves the current API key to the config file."""
+        print("Saving settings...")
+        cfg = config.get_config(CONFIG_SECTION)
+        cfg.api_key = self.api_key_box.Text
+        config.save_configs()
+        print("API Key saved.")
 
     def browse_for_files(self, sender, args):
         """Opens a file dialog to select reference files."""
@@ -64,6 +85,9 @@ class MCP_UI(Window):
 
     def run_automation(self, sender, args):
         """Processes the user prompt, calls the AI, and executes the correct MCP tool."""
+        # Save the current settings first
+        self.save_settings()
+
         prompt = self.prompt_textbox.Text
         api_key = self.api_key_box.Text
         # MCP credentials are not used in this version but are collected for future use

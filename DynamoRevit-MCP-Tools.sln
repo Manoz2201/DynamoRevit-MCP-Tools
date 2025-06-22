@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExecuteDynamoCommands", "mc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertDynamoFile", "mcp_tools\\ConvertDynamoFile\\ConvertDynamoFile.csproj", "{C7C467C9-5D5D-6E6E-D4D6-5D0D4D9D4D3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCP_UI", "mcp_ui\\MCP_UI.csproj", "{D8D578D9-6E6E-7F7F-E5E7-6E1E5E0E5E4E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,10 +26,6 @@ Global
 		{C7C467C9-5D5D-6E6E-D4D6-5D0D4D9D4D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7C467C9-5D5D-6E6E-D4D6-5D0D4D9D4D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7C467C9-5D5D-6E6E-D4D6-5D0D4D9D4D3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8D578D9-6E6E-7F7F-E5E7-6E1E5E0E5E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8D578D9-6E6E-7F7F-E5E7-6E1E5E0E5E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8D578D9-6E6E-7F7F-E5E7-6E1E5E0E5E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8D578D9-6E6E-7F7F-E5E7-6E1E5E0E5E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
