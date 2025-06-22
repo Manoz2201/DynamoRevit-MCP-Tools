@@ -25,9 +25,18 @@ class MCP_UI(Window):
             print("Error loading XAML file: {}".format(e))
             return
 
+        # Find UI elements from the loaded XAML
+        self.prompt_textbox = self.ui.FindName("prompt_textbox")
+        self.browse_button = self.ui.FindName("browse_button")
+        self.files_label = self.ui.FindName("files_label")
+        self.api_key_box = self.ui.FindName("api_key_box")
+        self.mcp_user_box = self.ui.FindName("mcp_user_box")
+        self.mcp_pass_box = self.ui.FindName("mcp_pass_box")
+        self.run_button = self.ui.FindName("run_button")
+
         # Connect UI elements to methods
-        self.ui.browse_button.Click += self.browse_for_files
-        self.ui.run_button.Click += self.run_automation
+        self.browse_button.Click += self.browse_for_files
+        self.run_button.Click += self.run_automation
         
         # Store selected files
         self.selected_files = []
@@ -40,15 +49,15 @@ class MCP_UI(Window):
         
         if dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK:
             self.selected_files = list(dialog.FileNames)
-            self.ui.files_label.Text = "{} files selected".format(len(self.selected_files))
+            self.files_label.Text = "{} files selected".format(len(self.selected_files))
             print("Selected files: " + ", ".join(self.selected_files))
 
     def run_automation(self, sender, args):
         """Placeholder for running the automation."""
-        prompt = self.ui.prompt_textbox.Text
-        api_key = self.ui.api_key_box.Text
-        mcp_user = self.ui.mcp_user_box.Text
-        mcp_pass = self.ui.mcp_pass_box.Password
+        prompt = self.prompt_textbox.Text
+        api_key = self.api_key_box.Text
+        mcp_user = self.mcp_user_box.Text
+        mcp_pass = self.mcp_pass_box.Password
 
         print("--- Running MCP Automation ---")
         print("Prompt: " + prompt)
